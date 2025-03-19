@@ -1,25 +1,28 @@
-<?PHP
+<?php
 
-echo '<h1>Auxlogin.php </h1>';
-
-$userForm= $_POST['user'];
-$passwordForm= $_POST['password'];
-
-$dsn = 'mysql:dbname=db_login;host=127.0.0.1';
-$user = 'root';
-$password = '';
+echo '<h1> AuxLogin.php </h1>';
 
 
-$banco = new PDO($dsn, $user, $password);
+    $userForm = $_POST ['user']; 
+    $passwordForm = $_POST ['password'];
 
-$consultaUsuarioSenha = 'SELECT * FROM tb_usuario WHERE usuario = "'. $userForm . '" AND senha = "' . $passwordForm . '"';
 
-$resultado = $banco->query($consultaUsuarioSenha)-> fetch();
+    $dsn = 'mysql:dbname=db_login;host=127.0.0.1';
+    $user = 'root';
+    $password = '';
+    $banco = new PDO($dsn, $user, $password);
+    $queryUsuarioSenha = 'SELECT * FROM tb_usuario WHERE usuario = "' . $userForm. '"AND senha = "' .$passwordForm .'"'; 
+    
+    $resultado = $banco-> query($queryUsuarioSenha)->fetch(); 
 
-var_dump($resultado);
 
-if (!empty( $resultado)&& $resultado != false) {
-    header ('location: loginSucesso.php');
-} else {
-    header ('location:index.php');
-}
+    if (!empty($resultado)&& $resultado != false){ 
+        header ('location:loginSucesso.php'); 
+
+    }   else {    
+        echo"    
+        <script>
+            alert('Senha ou CPF inválidos');
+        </script>";
+        header('location:index.php');
+    }

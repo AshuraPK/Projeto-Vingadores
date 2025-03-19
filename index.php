@@ -1,49 +1,62 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
-    <meta charset="PT-BR">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Login</title>
-</head>
- 
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             background-color: #0e0e0e;
             color: #f2f2f2;
         }
- 
+
         .card {
-            background-color: #1f1f1f;
+            width: 400px;
+            background-color: #1c1c1c;
             color: #f2f2f2;
             border-radius: 15px;
             padding: 20px;
-            width: 500px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .form-control {
+            background-color: #2c2c2c;
+            border: none;
+            color: #f2f2f2;
+        }
+
+        .form-control::placeholder {
+            color: #bbb;
+        }
+
+        .btn {
+            border-radius: 10px;
         }
     </style>
-
+</head>
 <body>
- 
-    <div class="card">
-        <form action="auxlogin.php" method="POST" class="mt-3">
 
-            <h1 class="text-center">Login</h1>
-            <label class="form-label">Usuário:</label>
-            <input type="text" class="form-control" name="user">
+    <div class="card text-center">
+        <h1 class="mb-4">Login</h1>
+        <form action="auxlogin.php" method="POST">
+
+            <input type="text" class="form-control mb-3" placeholder="Usuário/E-mail" name="user" required>
             
-            <label class="form-label mt-3">Senha:</label>
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control mb-3" placeholder="Senha" name="password" required>
 
-            <div class="d-flex justify-content-between mt-4">
+            <div class="d-grid gap-2">
                 <input class="btn btn-success" type="submit" value="Entrar">
-                <a href="cadastro.php" class="btn btn-primary">Cadastrar</a>
+                <a class="btn btn-primary" href="./usuario-cadastrar.php">Cadastrar</a>
+                <a class="btn btn-warning" href="./recuperarsenha.php">Esqueci a senha</a>
             </div>
+
         </form>
     </div>
+
 </body>
 </html>

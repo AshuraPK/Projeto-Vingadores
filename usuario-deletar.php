@@ -1,33 +1,34 @@
-<?php 
-
-echo '<h1>Aluno-deletar.php</h1>';
-
-$dsn = 'mysql:dbname=bd_chamadinha;host=127.0.0.1';
+<?php
+ 
+echo'<h1> deletar</h1>';
+$dsn = 'mysql:dbname=db_login;host=127.0.0.1';
 $user = 'root';
 $password = '';
-
 $banco = new PDO($dsn, $user, $password);
 
-// var_dump($_GET);
-// exibir as informações na tela var_dump
-// GET é uma variavel global, pega todas as informações do metodo get 
+ 
 $idFormulario = $_GET['id'];
-// Apagando a tabela tb_alunos
-$delete = 'DELETE FROM tb_alunos WHERE Id = :id';
-$box = $banco-> prepare ($delete);
-$box -> execute([
+ 
+$delete = 'DELETE FROM tb_pessoa WHERE id = :id';
+ 
+$box = $banco->prepare($delete);
+$box->execute([
     ':id' => $idFormulario
 ]);
 
-// Apagando a tabela tb_info_alunos
-$delete = 'DELETE FROM tb_info_alunos WHERE Id_alunos = :id_alunos';
-$box = $banco-> prepare ($delete);
-$box -> execute([
-    ':id_alunos' => $idFormulario
+$delete = 'DELETE FROM tb_usuario WHERE id_pessoa = :id';
+$box = $banco->prepare($delete);
+
+$box->execute([
+    ':id' => $idFormulario
 ]);
 
-echo '<script>
-        alert("Usuario apagado com sucesso!!!")
-        window.location.replace("index.php")
+echo
+'<script>
+    alert("O usuario foi apagado!")
+    // aparecer uma mensagem de  apagado com sucesso
+    window.location.replace("loginSucesso.php")
+ 
 </script>';
-//header('location:index.php');
+ 
+// header('location:index.php');
