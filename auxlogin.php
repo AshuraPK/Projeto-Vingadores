@@ -15,7 +15,24 @@ echo '<h1> AuxLogin.php </h1>';
     
     $resultado = $banco-> query($queryUsuarioSenha)->fetch(); 
 
+    $status = $resultado['status'];
+    ?>
 
+    <?php if ($status == 'admin') { ?>
+
+    <h1> Bem vindo Usuario ADMIN</h1>
+
+
+    <?php } ?>
+
+    <h1> Bem vindo Usuario COMUM</h1>
+
+    <a href="#" class="btn btn-sucess"> cadastrar -comum</a>
+    <a href="#" class="btn btn-primary"> Abrir -comum</a>
+    <a href="#" class="btn btn-warning" <?= $status != 'admin' ? 'disabled' : '' ?> > Editar -admin</a>
+    <a href="#" class="btn btn-danger"> Excluir -admin</a>
+
+<?php
     if (!empty($resultado)&& $resultado != false){ 
         header ('location:loginSucesso.php'); 
 
